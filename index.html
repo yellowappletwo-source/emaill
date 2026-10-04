@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>직원이 다치면, 산재만으로 끝날까요? | 기업 보장공백 점검</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#F4F6F9;--surf:#fff;--ink:#14202E;--mute:#5B6877;--blue:#1E4F8F;--red:#C4342B;--line:#D9DFE7;
+--serif:"Noto Serif KR","Nanum Myeongjo",serif;--sans:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1620;--surf:#172230;--ink:#E8EDF3;--mute:#9AA7B6;--blue:#6AA3E8;--red:#F0685D;--line:#2A394A}}
+:root[data-theme="dark"]{--bg:#0F1620;--surf:#172230;--ink:#E8EDF3;--mute:#9AA7B6;--blue:#6AA3E8;--red:#F0685D;--line:#2A394A}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.7 var(--sans);word-break:keep-all}
+section{padding:72px 22px;max-width:760px;margin:0 auto}
+h1,h2{font-family:var(--serif);line-height:1.3;margin:0 0 20px;letter-spacing:-.02em}
+h1{font-size:clamp(34px,8vw,52px);font-weight:800}
+h2{font-size:clamp(26px,5.5vw,34px);font-weight:800}
+p{margin:0 0 14px}
+.mute{color:var(--mute)}
+.btn{display:block;text-align:center;background:var(--blue);color:#fff;font-weight:700;font-size:18px;padding:18px 20px;border-radius:10px;text-decoration:none;margin:28px 0 8px}
+.btn:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#0F1620}}
+:root[data-theme="dark"] .btn{color:#0F1620}
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center}
+.tag{font-weight:700;color:var(--blue);margin-bottom:18px}
+.who{margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+.hero-bars{display:flex;gap:6px;height:64px;margin:30px 0 6px;align-items:flex-end}
+.hero-bars i{flex:1;background:var(--blue);border-radius:3px 3px 0 0;height:8%;animation:grow 1.6s .3s cubic-bezier(.2,.8,.2,1) forwards}
+.hero-bars i.r{background:var(--red)}
+@keyframes grow{to{height:var(--h)}}
+.check{list-style:none;padding:0;margin:0 0 24px}
+.check li{padding:14px 0 14px 34px;border-bottom:1px solid var(--line);position:relative}
+.check li:before{content:"";position:absolute;left:4px;top:21px;width:14px;height:8px;border-left:3px solid var(--red);border-bottom:3px solid var(--red);transform:rotate(-45deg)}
+.big{font-family:var(--serif);font-size:22px;font-weight:600;border-left:4px solid var(--red);padding-left:16px;margin-top:28px}
+/* story */
+.story{max-width:none;padding:0;background:var(--surf);border-block:1px solid var(--line)}
+.story-in{max-width:760px;margin:0 auto;padding:0 22px}
+.panel{position:sticky;top:env(safe-area-inset-top,0px);background:var(--surf);padding:18px 0 14px;z-index:2;border-bottom:1px solid var(--line)}
+.stack{display:flex;height:150px;gap:4px;align-items:flex-end}
+.col{flex:1;display:flex;flex-direction:column-reverse;height:100%;font-size:12px;text-align:center;color:var(--mute)}
+.seg{width:100%;height:0;transition:height .9s cubic-bezier(.2,.8,.2,1);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;line-height:1.2;overflow:hidden}
+.seg.b{background:var(--blue)}.seg.r{background:var(--red);border-top:2px solid var(--surf)}.seg.g{background:#2F8F5B}
+.lab{padding-top:6px}
+.cap{font-size:13px;margin-top:6px;color:var(--mute)}
+.step{min-height:70vh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .5s}
+.step.on{opacity:1}
+.step b{color:var(--red)}
+/* structure */
+.eq{display:flex;gap:10px;align-items:stretch;margin:24px 0}
+.eq div{flex:1;border:1px solid var(--line);background:var(--surf);padding:16px 12px;text-align:center;border-radius:8px;font-weight:700}
+.eq div:nth-child(2){border-color:var(--blue);color:var(--blue)}
+.eq span{align-self:center;font-weight:700;color:var(--mute)}
+.ind{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border-top:1px solid var(--line)}
+.ind div{padding:14px 4px;border-bottom:1px solid var(--line);font-weight:500}
+.ind div:before{content:"✔ ";color:var(--blue)}
+.flow{list-style:none;margin:20px 0;padding:0;counter-reset:s}
+.flow li{counter-increment:s;padding:16px 0 16px 52px;position:relative;border-bottom:1px solid var(--line);font-weight:500}
+.flow li:before{content:counter(s);position:absolute;left:0;top:14px;width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:700}
+.prof{display:grid;gap:18px;grid-template-columns:96px 1fr;align-items:start;margin-bottom:22px}
+.photo{width:96px;height:96px;border-radius:50%;background:var(--line);object-fit:cover;display:block;border:3px solid var(--surf);box-shadow:0 0 0 2px var(--blue)}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.nums div{border:1px solid var(--line);background:var(--surf);border-radius:8px;padding:14px 6px;text-align:center}
+.nums strong{display:block;font-family:var(--serif);font-size:24px;color:var(--blue)}
+.nums small{color:var(--mute);font-size:12px}
+.tabs{display:flex;gap:6px;margin:22px 0 10px}
+.tabs button{flex:1;font:700 15px var(--sans);padding:12px 6px;border:1px solid var(--line);background:var(--surf);color:var(--mute);border-radius:8px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.tabs button:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.rate{width:100%;border-collapse:collapse;background:var(--surf);border:1px solid var(--line)}
+.rate td,.rate th{padding:14px 12px;border-bottom:1px solid var(--line);text-align:left;font-size:16px}
+.rate th{text-align:right;color:var(--red);font-family:var(--serif);font-size:22px;white-space:nowrap}
+.case{border-left:4px solid var(--blue);background:var(--surf);padding:14px 16px;margin:14px 0}
+.case p{margin:6px 0 0;font-size:16px}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:18px 0 12px}
+.chips button{font:700 14px/1.3 var(--sans);padding:12px 4px;border:1px solid var(--line);background:var(--surf);color:var(--mute);border-radius:8px;cursor:pointer}
+.chips button[aria-selected="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.chips button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.case dl{margin:10px 0 0}.case dt{font-weight:700;color:var(--mute);font-size:14px;margin-top:10px}.case dd{margin:2px 0 0;font-size:16px}
+.case dd strong{color:var(--red)}
+.lanes{display:grid;grid-template-columns:1fr 54px 1fr;gap:6px 0;margin:28px 0 8px;align-items:stretch}
+.lh{font-weight:700;text-align:center;padding:10px 4px;border-radius:8px 8px 0 0;color:#fff;font-size:14px}
+.lh.pub{background:var(--blue)}.lh.co{background:var(--mute)}
+.lc{padding:12px 10px;font-size:14px;line-height:1.5;border:1px solid var(--line);background:var(--surf);display:flex;align-items:center}
+.lc.pub{border-left:4px solid var(--blue)}.lc.co{border-right:4px solid var(--mute)}
+.lc.red{border-color:var(--red);background:color-mix(in srgb,var(--red) 12%,var(--surf));font-weight:700}
+.mid{text-align:center;font-size:11px;line-height:1.3;color:var(--mute);display:flex;flex-direction:column;justify-content:center;font-weight:700}
+.mid{background:linear-gradient(var(--line),var(--line)) center/2px 100% no-repeat}
+@media(max-width:420px){.lc{font-size:13px;padding:10px 7px}.lanes{grid-template-columns:1fr 44px 1fr}}
+.calc{display:flex;flex-wrap:wrap;gap:10px 20px;margin:16px 0}
+.calc label{font-weight:700;font-size:15px}
+.calc input{width:84px;font:700 17px var(--sans);padding:8px;border:2px solid var(--blue);border-radius:6px;background:var(--surf);color:var(--ink);text-align:right}
+.calc input:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.ex{border:1px solid var(--line);background:var(--surf)}
+.ex .h{padding:10px 14px;font-weight:700;color:#fff;background:var(--blue)}
+.ex .h.r{background:var(--red)}
+.ex .r1{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line);font-size:15px;line-height:1.5}
+.ex .r1 span:last-child{font-weight:700;text-align:right;min-width:30%}
+.ex .rr{background:color-mix(in srgb,var(--red) 10%,var(--surf))}
+.ex .rr span:last-child{color:var(--red)}
+.apply{text-align:left;margin-top:24px;display:grid;gap:12px}
+.apply label{font-weight:700;font-size:15px;display:grid;gap:6px;color:#fff}
+.apply input:not([type=checkbox]),.apply select,.apply textarea,.done textarea{width:100%;font:400 16px var(--sans);padding:12px;border:2px solid transparent;border-radius:8px;background:#fff;color:#14202E}
+.apply input:focus-visible,.apply select:focus-visible,.apply textarea:focus-visible,.done textarea:focus-visible{outline:3px solid #FFD54A;outline-offset:2px}
+.apply .agree{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:14px;line-height:1.5}
+.apply .agree input{margin-top:4px;width:20px;height:20px;flex:none}
+.apply .btn,.done .btn{width:100%;border:0;cursor:pointer;font-family:var(--sans)}
+.done .btn.ghost{background:transparent;color:#fff;border:2px solid #fff}
+.done{text-align:left;margin-top:24px}
+.err{background:#fff;color:#C4342B;font-weight:700;padding:10px 12px;border-radius:8px;margin:0}
+.apply em{font-style:normal;color:#FFD54A;font-weight:700}
+.hc{border:0;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 12px}
+.hc legend{font-weight:700;font-size:15px;color:#fff;margin-bottom:6px;padding:0}
+.hc label span{display:flex;align-items:center;gap:6px;font-weight:400}
+.hc .tot{grid-column:1/-1;margin:0;color:#fff;font-size:15px}
+.apply .bad{border-color:#FFD54A!important;box-shadow:0 0 0 2px #FFD54A}
+.apply .note{font-size:13px;margin:0;color:#cfe0f5}
+.flow summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:44px}
+.flow summary::-webkit-details-marker{display:none}
+.flow summary::after{content:"+";font-size:24px;font-weight:400;color:var(--blue);line-height:1}
+.flow details[open] summary::after{content:"−"}
+.flow summary small{display:block;font-weight:400;font-size:12px;color:var(--mute)}
+.flow details[open] summary small{display:none}
+.flow summary:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.fx{padding:6px 0 10px;font-weight:400;font-size:15px;line-height:1.65}
+.fx p{margin:0 0 10px}
+.fx .eg{background:var(--bg);border-left:3px solid var(--blue);padding:10px 12px;font-size:14px}
+.mini{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 10px;background:var(--surf)}
+.mini th,.mini td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.mini th{background:var(--bg)}
+.mini .ok{color:var(--blue);font-weight:700}.mini .gap{color:var(--red);font-weight:700}
+.flow li{padding-top:10px;padding-bottom:10px}
+.flow li:before{top:16px}
+.final{background:var(--blue);color:#fff;max-width:none;text-align:center}
+.final>div{max-width:620px;margin:0 auto}
+.final .btn{background:#fff;color:#14202E}
+.final .mute{color:#cfe0f5}
+footer{max-width:760px;margin:0 auto;padding:28px 22px 40px;font-size:12px;color:var(--mute);line-height:1.6}
+@media(prefers-reduced-motion:reduce){.hero-bars i{animation:none;height:var(--h)}.seg{transition:none}.step{transition:none}}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <p class="tag">중대재해처벌법 × 기업보험</p>
+  <h1>직원이 다치면,<br>산재만으로 끝날까요?</h1>
+  <p style="font-size:19px">대표님이 꼭 알아야 할<br>기업의 보장 공백과 리스크</p>
+  <div class="hero-bars" aria-hidden="true">
+    <i style="--h:100%" class="r"></i><i style="--h:45%"></i><i style="--h:70%" class="r"></i><i style="--h:60%" class="r"></i><i style="--h:85%" class="r"></i>
+  </div>
+  <p class="cap" style="font-size:13px">사고 이후 회사에 남는 부담을 아래로 스크롤하며 확인해보세요</p>
+  <a class="btn" href="#cta">대표님 기업의 보장공백 무료 점검하기</a>
+  <div class="who"><strong>교보생명 중부지점</strong><br><span class="mute">기업보험 컨설팅 담당 유영순 팀장</span></div>
+</section>
+
+<section>
+  <h2>대표님, 이런 상황이라면 꼭 확인하세요</h2>
+  <ul class="check">
+    <li>직원이 업무 중 사고를 당했다</li>
+    <li>산재보험이 있으니 괜찮다고 생각한다</li>
+    <li>그런데 회사가 추가로 부담해야 할 부분은 무엇인지 모른다</li>
+    <li>중대재해가 발생했을 때 대표 개인의 책임이 걱정된다</li>
+    <li>벌금·형사책임·민사상 손해배상까지 생각해본 적이 없다</li>
+  </ul>
+  <p class="big">산재보험이 있다고 해서<br>회사의 모든 위험이 사라지는 것은 아닙니다.</p>
+</section>
+
+<section class="story" id="story">
+  <div class="story-in">
+    <div class="panel" aria-live="polite">
+      <div class="stack">
+        <div class="col"><div class="seg r" data-s="0" style="--v:100%;">사고</div><div class="lab">사고 발생</div></div>
+        <div class="col"><div class="seg b" data-s="1" style="--v:42%">산재 보상</div><div class="lab">산재 보상</div></div>
+        <div class="col"><div class="seg r" data-s="2" style="--v:20%">형사·벌금</div><div class="seg r" data-s="2" style="--v:20%">민사 배상</div><div class="seg r" data-s="2" style="--v:18%">운영 차질</div><div class="lab">남는 기업 부담</div></div>
+        <div class="col"><div class="seg r" data-s="3" style="--v:60%">대표 개인<br>법적 리스크</div><div class="lab">대표 리스크</div></div>
+        <div class="col"><div class="seg g" data-s="4" style="--v:90%">보완 구조</div><div class="lab">해결 구조</div></div>
+      </div>
+      <p class="cap">※ 구조 이해를 위한 도식입니다. 실제 범위와 금액은 사업장·사고 유형별로 다릅니다.</p>
+    </div>
+
+    <div class="step" data-step="0"><h2>사고가 발생하면<br>실제로 어떤 일이 생길까요?</h2><p>직원이 업무 중 다칩니다. 가장 먼저 사람을 살피고, 치료와 보상이 시작됩니다.</p></div>
+    <div class="step" data-step="1"><h2>1단계. 산재 보상</h2><p>산재보험은 직원의 치료와 보상을 위한 제도입니다. 꼭 필요하고, 그래서 먼저 움직입니다.</p></div>
+    <div class="step" data-step="2"><h2>2단계. 그 이후 회사에 남는 부담</h2><p><b>형사책임 · 벌금 · 민사상 손해배상 · 사업 운영 차질.</b><br>산재 보상이 끝난 뒤에도 회사가 마주할 수 있는 항목입니다.</p></div>
+    <div class="step" data-step="3"><h2>3단계. 대표 개인의 법적 리스크</h2><p>중대재해가 발생하면 경영책임자의 책임이 함께 논의될 수 있습니다.</p><p class="big">“대표님 회사는 이 부분까지 준비되어 있습니까?”</p></div>
+    <div class="step" data-step="4"><h2>그래서 기업보험을 봐야 합니다</h2><p>산재보험을 대신하는 것이 아니라, 산재 이후의 빈칸을 확인하고 보완하는 구조입니다.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>산재보험 + 기업보험</h2>
+  <div class="eq"><div>산재보험<br><small class="mute">직원 치료·보상</small></div><span>+</span><div>기업보험<br><small class="mute">회사 사고 위험 보완</small></div></div>
+  <p>회사의 사고 위험을 한 번 더 점검하고 보완하는 구조입니다. 특히 <strong>직원 수 5명 이상</strong>인 사업장이라면 현재 가입된 보장을 한번 확인해볼 필요가 있습니다.</p>
+</section>
+
+<section>
+  <h2>다친 뒤에 남는 ‘장해’,<br>얼마나 인정될까요?</h2>
+  <p>치료가 끝나도 손가락·관절 기능이 회복되지 않으면 ‘장해’가 남습니다. 보험은 장해 정도를 <strong>지급률(%)</strong>로 나누고, <strong>가입금액 × 지급률</strong>로 계산하는 방식이 일반적입니다.</p>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-t="t1">손가락</button>
+    <button role="tab" aria-selected="false" data-t="t2">팔·어깨·손</button>
+    <button role="tab" aria-selected="false" data-t="t3">다리</button>
+    <button role="tab" aria-selected="false" data-t="t4">눈</button>
+  </div>
+  <table class="rate" id="t1"><tbody>
+    <tr><td>한 손의 5개 손가락을 모두 잃었을 때</td><th>55%</th></tr>
+    <tr><td>한 손의 첫째 손가락(엄지)을 잃었을 때</td><th>15%</th></tr>
+    <tr><td>첫째 손가락 외 손가락을 잃었을 때 (하나마다)</td><th>10%</th></tr>
+  </tbody></table>
+  <table class="rate" id="t2" hidden><tbody>
+    <tr><td>한 팔의 손목 이상을 잃었을 때</td><th>60%</th></tr>
+    <tr><td>한 팔의 3대 관절(어깨·팔꿈치·손목) 중 하나의 기능을 완전히 잃었을 때</td><th>30%</th></tr>
+    <tr><td>3대 관절 중 하나의 기능에 심한 장해를 남긴 때</td><th>20%</th></tr>
+    <tr><td>한 팔에 가관절이 남아 뚜렷한 장해를 남긴 때</td><th>20%</th></tr>
+  </tbody></table>
+  <table class="rate" id="t3" hidden><tbody>
+    <tr><td>한 다리의 발목 이상을 잃었을 때</td><th>60%</th></tr>
+    <tr><td>한 다리의 3대 관절(고관절·무릎·발목) 중 하나의 기능을 완전히 잃었을 때</td><th>30%</th></tr>
+    <tr><td>3대 관절 중 하나의 기능에 심한 장해를 남긴 때</td><th>20%</th></tr>
+    <tr><td>3대 관절 중 하나의 기능에 뚜렷한 장해를 남긴 때</td><th>10%</th></tr>
+    <tr><td>3대 관절 중 하나의 기능에 약간의 장해를 남긴 때</td><th>5%</th></tr>
+  </tbody></table>
+  <table class="rate" id="t4" hidden><tbody>
+    <tr><td>한 눈이 멀었을 때</td><th>50%</th></tr>
+    <tr><td>한 눈의 교정시력이 0.02 이하로 된 때</td><th>35%</th></tr>
+    <tr><td>한 눈의 교정시력이 0.06 이하로 된 때</td><th>25%</th></tr>
+    <tr><td>한 눈의 교정시력이 0.1 이하로 된 때</td><th>15%</th></tr>
+  </tbody></table>
+  <p class="cap">※ 생명보험 표준약관 장해분류표 기준 예시입니다. 상품·가입 시기·특약에 따라 분류와 지급률이 다르므로 반드시 가입하신 약관을 확인하세요.</p>
+
+  <h2 style="margin-top:48px;font-size:24px">업종별로 보면,<br>자주 남는 장해가 다릅니다</h2>
+  <div class="chips" role="tablist" id="chips"></div>
+  <div class="case" id="ind-out" aria-live="polite"></div>
+  <p class="cap">※ 가입금액 1억 원을 가정한 단순 예시입니다. 실제 장해 여부와 지급률은 치료 종결 후 의사의 장해진단과 가입하신 약관 기준으로 결정됩니다.</p>
+  <p class="big">산재 보상과 별개로,<br>대표님 회사의 보장은 이 구간까지 준비되어 있나요?</p>
+</section>
+
+<section>
+  <h2>현장에서 사고가 나면,<br>이런 순서로 흘러갑니다</h2>
+  <p>우리나라 산업현장에서 반복되는 사고 유형을 고르면, 이후 절차에서 <strong>공공 절차</strong>와 <strong>회사가 따로 준비할 일</strong>이 어떻게 나뉘는지 볼 수 있습니다.</p>
+  <div class="chips" id="acc-chips" role="tablist"></div>
+  <div class="case" id="acc-out" aria-live="polite"></div>
+  <p class="cap">※ 고용노동부 ‘2025년 재해조사 대상 사망사고’ 기준, 사고 유형 중 ‘떨어짐’이 41.2%로 가장 많았습니다. 사망사고 통계이며 전체 재해 분포와는 다를 수 있습니다.</p>
+
+  <div class="lanes" role="img" aria-label="사고 발생 후 공공 절차와 회사 준비 사항을 나란히 보여주는 구조도">
+    <div class="lh pub">산재·공공 절차</div><div></div><div class="lh co">회사가 따로 준비할 일</div>
+    <div class="lc pub">작업 중지, 2차 사고 방지<br>119 신고·응급조치</div><div class="mid">1<br>즉시 대응</div><div class="lc co">현장 보존<br>시간·장소·목격자 기록</div>
+    <div class="lc pub">중대재해는 지체 없이 관할 고용노동관서에 보고</div><div class="mid">2<br>보고</div><div class="lc co">대표 보고<br>가입 보험사 사고 접수</div>
+    <div class="lc pub">요양급여 신청(근로복지공단), 치료 시작</div><div class="mid">3<br>산재 처리</div><div class="lc co">진단서·사고경위서 등 보험 서류 준비</div>
+    <div class="lc pub">원인 조사, 수사 가능성</div><div class="mid">4<br>조사</div><div class="lc co red">형사책임·벌금, 대표 개인 법적 리스크 대응</div>
+    <div class="lc pub">치료 종결 후 장해 판정·보상</div><div class="mid">5<br>치료 종결</div><div class="lc co">보험 장해진단서 → 장해지급률 확인</div>
+    <div class="lc pub">재발 방지, 안전보건 점검</div><div class="mid">6<br>사후</div><div class="lc co red">민사 손해배상, 운영 차질 대비</div>
+  </div>
+  <p class="cap">※ 일반적인 예시 흐름입니다. 신고 의무·기한·서류는 사고 규모와 사안에 따라 다르므로 관할 고용노동관서, 근로복지공단, 법률 전문가에게 확인하세요.</p>
+  <p class="big">빨간 칸은 산재 보상만으로는<br>채워지지 않는 부분입니다.</p>
+  <h2 style="margin-top:44px;font-size:24px">숫자로 보면 이렇습니다<br><small class="mute" style="font-size:16px;font-weight:400">업무 중 사망 사고 가정 예시</small></h2>
+  <div class="calc">
+    <label>나이 <input id="in-age" type="number" value="40" min="20" max="64" inputmode="numeric"> 세 · 남성</label>
+    <label>월 급여 <input id="in-pay" type="number" value="250" min="100" step="10" inputmode="numeric"> 만 원</label>
+  </div>
+  <div class="ex" id="ex-out" aria-live="polite"></div>
+  <p class="cap">※ 단순화한 시산입니다. 평균임금은 월 급여×12÷365로 환산했고, 장례비 상·하한과 유족 구성에 따른 연금 계산은 반영하지 않았습니다. 민사 시산은 가동연한 65세, 생계비 공제 1/3, 월 단위 호프만 계수(연 5%)를 가정했으며, 과실상계·위자료·합의 여부에 따라 크게 달라집니다. 형사 항목은 법정형 상한이며 실제 선고액이 아닙니다. 구체적인 사안은 노무사·변호사와 확인하세요.</p>
+</section>
+
+<section>
+  <h2>이런 대표님께 권합니다</h2>
+  <div class="ind"><div>제조업·자동차부품</div><div>병원·의료기관</div><div>육가공·식품업</div><div>음식점</div><div>물류·운송업</div><div>기계·설비를 사용하는 사업장</div></div>
+  <p style="margin-top:18px">직원이 있는 사업장이라면, 업종에 따라 위험도와 필요한 보장이 달라집니다.</p>
+</section>
+
+<section>
+  <h2>유영순 팀장이 해드리는 것</h2>
+  <div class="prof">
+    <img class="photo" alt="교보생명 중부지점 유영순 팀장" width="96" height="96" src="data:image/jpeg;base64,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">
+    <div><strong>유영순 팀장</strong><br>교보생명 중부지점 · 기업보험 컨설팅 담당 GFP<br><span class="mute">대표님 눈높이에서 위험을 먼저 이해하고, 점검 결과를 쉬운 말로 하나씩 설명드립니다.</span></div>
+  </div>
+  <div class="nums">
+    <div><strong>10곳</strong><small>단체보험 가입 사업장</small></div>
+    <div><strong>10건</strong><small>보장공백 점검</small></div>
+    <div><strong>10분</strong><small>무료 점검 소요 시간</small></div>
+  </div>
+  <p class="cap">※ 2026년 10월 기준 유영순 팀장 실적입니다.</p>
+  <p><strong>보험을 바로 가입하라는 이야기가 아닙니다.</strong> 먼저 이 순서로 살펴봅니다.</p>
+  <ol class="flow">
+    <li><details><summary><span>현재 가입 상태 확인<small>눌러서 자세히 보기</small></span></summary><div class="fx"><p><b>하는 일</b><br>증권과 가입 내역을 대표님과 함께 보며 지금 어떤 보험이 있는지 한 장으로 정리합니다.</p><p><b>확인하는 것</b><br>산재보험 가입 여부 · 단체 상해·질병보험 유무 · 배상책임 등 기업 관련 보험 · 가입금액과 만기·갱신일</p><p class="eg"><b>예시 (음식점, 직원 8명)</b><br>산재보험 가입 / 단체 상해보험 없음 / 배상책임보험 만기 2개월 남음 → 현황표로 정리</p></div></details></li>
+    <li><details><summary><span>산재 외 위험 확인<small>눌러서 자세히 보기</small></span></summary><div class="fx"><p><b>하는 일</b><br>업종, 작업 환경, 직원 구성을 보고 실제로 일어날 수 있는 사고를 짚어봅니다.</p><p><b>확인하는 것</b><br>자주 발생하는 사고 유형(떨어짐·끼임·부딪힘 등) · 산재 보상이 다루지 않는 회사 몫(민사 책임, 형사 대응, 운영 차질)</p><p class="eg"><b>예시 (육가공 공장)</b><br>절단기·컨베이어에 손이 끼이는 사고 → 손가락·손목 장해가 남으면 산재 보상 외에 회사가 따로 부담할 수 있는 항목이 무엇인지 확인</p></div></details></li>
+    <li><details><summary><span>기업의 보장 공백 확인<small>눌러서 자세히 보기</small></span></summary><div class="fx"><p><b>하는 일</b><br>1번의 가입 현황과 2번의 위험을 겹쳐 놓고, 위험은 있는데 보장이 비어 있는 곳을 찾습니다.</p><table class="mini"><tbody><tr><th>위험</th><th>현재 보장</th></tr><tr><td>직원 치료·보상</td><td class="ok">산재보험 있음</td></tr><tr><td>직원 후유장해 추가 보상</td><td class="gap">단체보험 없음 → 확인 필요</td></tr><tr><td>회사 민사 책임</td><td class="gap">배상책임 확인 필요</td></tr></tbody></table><p class="eg">※ 가상의 예시입니다. 실제 공백은 사업장마다 다릅니다.</p></div></details></li>
+    <li><details><summary><span>필요한 경우 보완안 제시<small>눌러서 자세히 보기</small></span></summary><div class="fx"><p><b>하는 일</b><br>공백이 확인된 부분에 한해, 꼭 필요한 순서대로 보완 방법을 제안합니다.</p><p><b>이렇게 제안합니다</b><br>꼭 필요한 것부터 우선순위 정리 · 예산 범위 안에서 2~3가지 안 비교 · 가입 여부는 대표님이 결정</p><p class="eg">공백이 없다면 보완안도 없습니다. 점검만으로 끝나도 괜찮습니다.</p></div></details></li>
+  </ol>
+</section>
+
+<section class="final" id="cta">
+  <div>
+    <h2>대표님 회사는 어떠신가요?</h2>
+    <p>산재보험은 가입되어 있지만<br>그 이후의 위험까지 준비되어 있는지는<br>한번 확인해보셨습니까?</p>
+    <p class="mute">10분이면 현재 기업보험의 보장 구조를 함께 점검해드립니다.</p>
+    <form id="apply" class="apply" onsubmit="return false" novalidate>
+      <label>회사명 <em>(필수)</em><input name="co" autocomplete="organization" required></label>
+      <label>대표자명 <em>(필수)</em><input name="ceo" autocomplete="name" required></label>
+      <label>업종
+        <select name="ind"><option>제조·자동차부품</option><option>병원·의료기관</option><option>육가공·식품업</option><option>음식점</option><option>물류·운송업</option><option>기계·설비 사업장</option><option>기타</option></select></label>
+      <fieldset class="hc"><legend>직원 수 <em>(필수)</em></legend>
+        <label>사무직<span><input name="off" type="number" min="0" inputmode="numeric" placeholder="0"> 명</span></label>
+        <label>현장직<span><input name="fld" type="number" min="0" inputmode="numeric" placeholder="0"> 명</span></label>
+        <p class="tot">합계 <strong id="hc-tot">0</strong>명</p>
+      </fieldset>
+      <label>사업자등록번호 (선택)<input name="bn" inputmode="numeric" placeholder="000-00-00000" maxlength="12"></label>
+      <label>연락처 <em>(필수)</em><input name="tel" type="tel" autocomplete="tel" inputmode="tel" required placeholder="010-0000-0000"></label>
+      <label>방문 희망 일자 (선택)<input name="vd" type="date"></label>
+      <label>방문 희망 시간
+        <select name="vt"><option>협의</option><option>오전 9시~12시</option><option>오후 12시~3시</option><option>오후 3시~6시</option></select></label>
+      <label>통화 가능한 시간<input name="time" placeholder="예: 평일 오후 2~5시"></label>
+      <label>궁금하신 점 (선택)<textarea name="memo" rows="3"></textarea></label>
+      <p class="note">사업자등록증과 가입자 명단은 신청 단계에서 받지 않습니다. 상담 일정이 정해진 뒤 안전한 방법으로 안내드립니다.</p>
+      <label class="agree"><input type="checkbox" name="agree"> 상담 연락을 위해 위 정보를 수집·이용하는 데 동의합니다. (목적: 보장공백 점검 상담, 보유: 상담 종료 시까지)</label>
+      <button type="button" class="btn" id="apply-btn">기업 보장공백 무료 점검 신청</button>
+      <p class="err" id="apply-err" role="alert" hidden></p>
+    </form>
+    <div id="apply-done" class="done" hidden>
+      <h3>신청 내용이 준비되었습니다</h3>
+      <p><strong>1단계.</strong> 아래 버튼으로 내용을 복사하세요.<br><strong>2단계.</strong> 메일(네이버·다음·회사 메일 등)에 붙여넣어 <strong>pangpagnecho@naver.com</strong> 으로 보내 주세요.</p>
+      <textarea id="apply-text" rows="9" readonly aria-label="신청 내용"></textarea>
+      <button type="button" class="btn" id="copy-btn">신청 내용 복사하기</button>
+      <p id="copy-msg" style="font-size:14px" hidden>복사되었습니다. 메일에 붙여넣어 보내 주세요.</p>
+      <button type="button" class="btn ghost" id="addr-btn">받는 메일 주소 복사하기</button>
+      <p style="font-size:14px;margin:12px 0 0">Gmail을 쓰신다면 <a id="mail-cta" target="_blank" rel="noopener" href="#" style="color:#fff;font-weight:700">여기를 눌러 바로 작성하세요.</a></p>
+    </div>
+    <p class="mute" style="font-size:14px;margin-top:20px">교보생명 중부지점<br>기업보험 컨설팅 담당 GFP 유영순 팀장</p>
+  </div>
+</section>
+
+<footer>
+  ※ 본 페이지는 보험 가입 권유가 아닌 보장 현황 점검 안내입니다. 보험 가입 시 보장 범위·면책·보험료 등 상품설명서를 반드시 확인하시기 바랍니다.<br>
+  ※ 준법감시 심의필 번호 및 유효기간: [입력] · 연락처/신청 링크: [입력]
+</footer>
+
+<script>
+(function(){
+  // CTA 링크: 카카오 채널/전화/신청폼 주소로 교체하세요
+  var vd=document.querySelector("#apply [name=vd]");if(vd){vd.min=new Date().toISOString().slice(0,10)}
+  var o1=document.querySelector("#apply [name=off]"),o2=document.querySelector("#apply [name=fld]");
+  function sum(){document.getElementById("hc-tot").textContent=(+o1.value||0)+(+o2.value||0)}
+  o1.addEventListener("input",sum);o2.addEventListener("input",sum);
+  var MAIL="pangpagnecho@naver.com";
+  var FORM_URL="https://docs.google.com/forms/d/e/1FAIpQLSc2fFAI3v78vDcPJ-xNF4rT_s_NB7D_hpyJ79fHk7UC8ed-fg/viewform"; // 네이버 폼 등 외부 신청서 주소가 있으면 여기에 넣으면 버튼이 그 주소로 연결됩니다
+  var fm=document.getElementById("apply"),btn=document.getElementById("apply-btn"),er=document.getElementById("apply-err");
+  if(FORM_URL){fm.innerHTML='<a class="btn" target="_blank" rel="noopener" href="'+FORM_URL+'">기업 보장공백 무료 점검 신청</a><p class="note" style="text-align:center">신청서는 약 3분이면 작성됩니다.<br>회사명·대표자명·직원 수·연락처를 준비해 주세요.<br>사업자등록증과 가입자 명단은 신청 단계에서 받지 않습니다.</p>'}
+  else{
+  btn.addEventListener("click",function(){
+    var f=fm.elements,miss=[];
+    Array.prototype.forEach.call(fm.querySelectorAll(".bad"),function(x){x.classList.remove("bad")});
+    function need(el,name){if(!el.value.trim()){miss.push(name);el.classList.add("bad")}}
+    need(f.co,"회사명");need(f.ceo,"대표자명");need(f.tel,"연락처");
+    var tot=(+f.off.value||0)+(+f.fld.value||0);
+    if(tot<1){miss.push("직원 수(사무직·현장직)");f.off.classList.add("bad");f.fld.classList.add("bad")}
+    if(miss.length){er.textContent="다음 항목을 입력해 주세요: "+miss.join(", ");er.hidden=false;return}
+    var bnd=f.bn.value.replace(/\D/g,"");
+    if(bnd&&bnd.length!==10){er.textContent="사업자등록번호는 숫자 10자리입니다. 모르시면 비워 두셔도 됩니다.";f.bn.classList.add("bad");er.hidden=false;return}
+    if(!f.agree.checked){er.textContent="개인정보 수집·이용 동의에 체크해 주세요.";er.hidden=false;return}
+    er.hidden=true;
+    var t="[기업 보장공백 무료 점검 신청]\n회사명: "+f.co.value.trim()+"\n대표자명: "+f.ceo.value.trim()+"\n업종: "+f.ind.value+"\n직원 수: "+tot+"명 (사무직 "+(+f.off.value||0)+"명, 현장직 "+(+f.fld.value||0)+"명)\n사업자등록번호: "+(bnd?bnd.replace(/(\d{3})(\d{2})(\d{5})/,"$1-$2-$3"):"-")+"\n연락처: "+f.tel.value.trim()+"\n방문 희망: "+(f.vd.value||"미정")+" / "+f.vt.value+"\n통화 가능한 시간: "+(f.time.value.trim()||"-")+"\n궁금하신 점: "+(f.memo.value.trim()||"-")+"\n개인정보 수집·이용 동의: 예";
+    document.getElementById("apply-text").value=t;
+    document.getElementById("mail-cta").href="https://mail.google.com/mail/?view=cm&fs=1&to="+MAIL+"&su="+encodeURIComponent("[기업 보장공백 무료 점검 신청] "+f.co.value.trim()+" / "+f.ceo.value.trim())+"&body="+encodeURIComponent(t);
+    fm.hidden=true;document.getElementById("apply-done").hidden=false;
+  });
+  document.getElementById("addr-btn").addEventListener("click",function(){
+    var tmp=document.createElement("textarea");tmp.value=MAIL;document.body.appendChild(tmp);tmp.select();
+    try{document.execCommand("copy")}catch(e){}
+    document.body.removeChild(tmp);this.textContent="복사됨: "+MAIL;
+  });
+  document.getElementById("copy-btn").addEventListener("click",function(){
+    var ta=document.getElementById("apply-text"),m=document.getElementById("copy-msg");
+    function ok(){m.hidden=false}
+    ta.select();
+    try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ta.value).then(ok,function(){document.execCommand("copy");ok()})}else{document.execCommand("copy");ok()}}catch(e){ok()}
+  });
+  }
+  var segs=document.querySelectorAll(".seg");
+  function show(n){
+    segs.forEach(function(s){
+      var k=+s.dataset.s;
+      s.style.height=(k<=n)?s.style.getPropertyValue("--v"):"0";
+    });
+  }
+  var steps=document.querySelectorAll(".step");
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        steps.forEach(function(s){s.classList.remove("on")});
+        e.target.classList.add("on");
+        show(+e.target.dataset.step);
+      }
+    });
+  },{rootMargin:"-45% 0px -45% 0px"});
+  steps.forEach(function(s){io.observe(s)});
+  var tb=document.querySelectorAll(".tabs button");
+  tb.forEach(function(b){b.addEventListener("click",function(){
+    tb.forEach(function(x){x.setAttribute("aria-selected",x===b);document.getElementById(x.dataset.t).hidden=(x!==b)});
+  })});
+  var IND=[
+   ["제조·자동차부품","프레스·절삭·사출 설비에 손이 끼이는 사고","손가락 절단, 손가락뼈 손상","엄지 <strong>15%</strong> · 그 외 손가락 하나당 <strong>10%</strong>","엄지 기준 1,500만 원 수준"],
+   ["병원·의료기관","환자 이송·바닥 물기로 인한 미끄러짐과 넘어짐","어깨·팔꿈치 등 팔 관절의 운동 제한","심한 장해 <strong>20%</strong> · 기능 완전 상실 <strong>30%</strong>","2,000만~3,000만 원 수준"],
+   ["육가공·식품업","절단기·분쇄기·컨베이어에 손과 팔이 말려드는 사고","손가락 또는 손목 이상 절단","손가락 <strong>10~15%</strong> · 손목 이상 절단 <strong>60%</strong>","1,000만~6,000만 원 수준"],
+   ["음식점","젖은 주방 바닥에서 미끄러져 넘어지는 사고","다리 관절 기능 장해(골절 후 운동 제한)","약간 <strong>5%</strong> · 뚜렷 <strong>10%</strong> · 심한 <strong>20%</strong>","500만~2,000만 원 수준"],
+   ["물류·운송업","지게차 충돌, 낙하물, 상하차 중 추락","다리 관절 장해, 어깨 관절 장해","다리 <strong>5~30%</strong> · 어깨 <strong>20~30%</strong>","500만~3,000만 원 수준"],
+   ["기계·설비 사업장","회전체 말림, 용접·연삭 중 비산 이물","팔 절단, 한 눈의 시력 장해","시력 <strong>15~50%</strong> · 손목 이상 절단 <strong>60%</strong>","1,500만~6,000만 원 수준"]];
+  var ch=document.getElementById("chips"),out=document.getElementById("ind-out");
+  function pick(i){
+    var d=IND[i];
+    out.innerHTML="<b>"+d[0]+"</b><dl><dt>자주 일어나는 사고</dt><dd>"+d[1]+"</dd><dt>남을 수 있는 장해</dt><dd>"+d[2]+"</dd><dt>적용 지급률</dt><dd>"+d[3]+"</dd><dt>1억 원 가정 시</dt><dd>"+d[4]+"</dd></dl>";
+    Array.prototype.forEach.call(ch.children,function(b,j){b.setAttribute("aria-selected",j===i)});
+  }
+  IND.forEach(function(d,i){var b=document.createElement("button");b.setAttribute("role","tab");b.textContent=d[0];b.onclick=function(){pick(i)};ch.appendChild(b)});
+  pick(0);
+  var ACC=[
+   ["떨어짐","사다리·지붕·적재함·고소 작업대에서 추락","골절 후 다리·어깨 관절 운동 제한"],
+   ["끼임","설비 점검·청소 중 가동, 컨베이어·프레스에 손·팔 끼임","손가락·팔 절단, 손가락뼈 손상"],
+   ["물체에 맞음","적재물·자재 낙하, 작업 중 파편·이물 비산","어깨·팔 손상, 한 눈의 시력 장해"],
+   ["부딪힘","지게차·운반차량과 작업자 충돌","다리 골절, 관절 기능 장해"],
+   ["깔림·뒤집힘","지게차 전도, 적재물 붕괴","다리 관절 장해, 절단"]];
+  var ac=document.getElementById("acc-chips"),ao=document.getElementById("acc-out");
+  function apick(i){var d=ACC[i];
+    ao.innerHTML="<b>"+d[0]+"</b><dl><dt>자주 있는 상황</dt><dd>"+d[1]+"</dd><dt>치료 후 남을 수 있는 장해</dt><dd>"+d[2]+"</dd></dl>";
+    Array.prototype.forEach.call(ac.children,function(b,j){b.setAttribute("aria-selected",j===i)})}
+  ACC.forEach(function(d,i){var b=document.createElement("button");b.setAttribute("role","tab");b.textContent=d[0];b.onclick=function(){apick(i)};ac.appendChild(b)});
+  apick(0);
+  var ip=document.getElementById("in-pay"),ia=document.getElementById("in-age"),eo=document.getElementById("ex-out");
+  function man(v){return Math.round(v/1e4).toLocaleString("ko-KR")+"만 원"}
+  function row(a,b,c){return '<div class="r1'+(c?' rr':'')+'"><span>'+a+'</span><span>'+b+'</span></div>'}
+  function calc(){
+    var pay=(+ip.value||0)*1e4,age=Math.min(64,Math.max(20,+ia.value||40));
+    var d=pay*12/365,fun=d*120,lump=d*1300,n=(65-age)*12,h=0,k;
+    for(k=1;k<=n;k++)h+=1/(1+0.05/12*k);
+    var loss=pay*2/3*h,gap=Math.max(0,loss-lump);
+    eo.innerHTML='<div class="h">산재보험에서 지급 (근로복지공단)</div>'
+     +row("장례비 (평균임금 120일분)","약 "+man(fun))
+     +row("유족급여 일시금 환산 참고액 (1,300일분)<br><small class=\"mute\">실제는 유족연금 지급이 원칙</small>","약 "+man(lump))
+     +'<div class="h r">그 이후 회사에 남을 수 있는 부담</div>'
+     +row("민사상 손해배상 시산<br><small class=\"mute\">일실수입 약 "+man(loss)+" − 산재 유족급여 상당액</small>","약 "+man(gap)+"<br><small>+ 위자료 별도</small>",1)
+     +row("중대재해처벌법 위반 시 법정형<br><small class=\"mute\">경영책임자 징역 1년 이상 또는 벌금 10억 원 이하, 법인 벌금 50억 원 이하</small>","법정형 상한",1)
+     +row("산업안전보건법 위반(사망) 법정형<br><small class=\"mute\">7년 이하 징역 또는 1억 원 이하 벌금</small>","법정형 상한",1)
+     +row("징벌적 손해배상<br><small class=\"mute\">고의·중과실 인정 시 손해액의 5배 이내</small>","최대 5배",1)
+     +row("형사 대응·합의 비용, 사업 운영 차질","사안별",1);
+  }
+  ip.addEventListener("input",calc);ia.addEventListener("input",calc);calc();
+})();
+</script>
+</body>
+</html>
